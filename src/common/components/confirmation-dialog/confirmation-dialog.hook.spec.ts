@@ -3,7 +3,7 @@ import { renderHook, act } from '@testing-library/react';
 import { Lookup } from 'common/models';
 
 describe('common/components/confirmation-dialog/ConfirmationDialogHook', () => {
-	it('should return an object: isOpen and itemToDelete with default values', () => {
+	it('should return isOpen and itemToDelete equals to default values', () => {
 		// Arrange
 		const defaultOpen = false;
 		const defaultLookup: Lookup = { id: '', name: '' };
@@ -16,7 +16,7 @@ describe('common/components/confirmation-dialog/ConfirmationDialogHook', () => {
 		expect(result.current.itemToDelete).toEqual(defaultLookup);
 	});
 
-	it('should update itemToDelete when it calls onAccept', () => {
+	it('should update lookup when onAccept is called', () => {
 		// Arrange
 		const defaultLookup: Lookup = { id: '', name: '' };
 
@@ -31,9 +31,8 @@ describe('common/components/confirmation-dialog/ConfirmationDialogHook', () => {
 		expect(result.current.itemToDelete).toEqual(defaultLookup);
 	});
 
-	it('should update isOpen when it calls onClose', () => {
+	it('should isOpen return false when onClose is called', () => {
 		// Arrange
-		const newOpen = false;
 
 		// Act
 		const { result } = renderHook(() => useConfirmationDialog());
@@ -43,12 +42,11 @@ describe('common/components/confirmation-dialog/ConfirmationDialogHook', () => {
 		});
 
 		// Assert
-		expect(result.current.isOpen).toEqual(newOpen);
+		expect(result.current.isOpen).toBe(false);
 	});
 
-	it('should update isOpen and itemToDelete when it calls onOpenDialog', () => {
+	it('should update isOpen and itemToDelete when onOpenDialog is called', () => {
 		// Arrange
-		const newOpen = true;
 		const newLookup: Lookup = { id: 'test id', name: 'test name' };
 
 		// Act
@@ -59,7 +57,7 @@ describe('common/components/confirmation-dialog/ConfirmationDialogHook', () => {
 		});
 
 		// Assert
-		expect(result.current.isOpen).toEqual(newOpen);
+		expect(result.current.isOpen).toBe(true);
 		expect(result.current.itemToDelete).toEqual(newLookup);
 	});
 });
