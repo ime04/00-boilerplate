@@ -3,7 +3,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog.component';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-describe('common/ConfirmationDialog', () => {
+describe('common/components/confirmation-dialog/ConfirmationDialog', () => {
     it('should be render as expected passing required properties', () => {
         // Arrange
         const props = {
